@@ -6,31 +6,64 @@ import SlideMenu from "./sub/SlideMenu";
 
 const Header: React.FC<{ id: string }> = ({ id }) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isDropdown, setIsDropdown] = useState(false);
   const location = useLocation();
-  
 
   useEffect(() => {
-  const handleScroll = () => {
-    if (window.scrollY > 40) {
-    setIsScrolled(true);
-    } else {
-    setIsScrolled(false);
-    }
-  };
-  window.addEventListener("scroll", handleScroll);
-
-  return () => {
-    window.removeEventListener("scroll", handleScroll);
-  };
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
-  const toggleDropdown =() =>{
-    setIsDropdown(prev => !prev)
-  }
-  useEffect(()=>{
-    setIsDropdown(false)
-  },[location]);
+
+  useEffect(() => {
+    const supportMenu = document.querySelector(`.${hyo.support} ul`);
+    supportMenu?.classList.remove(hyo.open);
+
+    const slideMenu = document.querySelector(`.${hyo.hb_submenu}`);
+    const dim = document.querySelector(`.${hyo.dim}`);
+    slideMenu?.classList.remove(hyo.open);
+    dim?.classList.remove(hyo.open);
+  }, [location]);
+
+  useEffect(() => {
+    const support = document.querySelector(`.${hyo.support}`);
+    const supportMenu = support?.querySelector("ul");
+
+    const toggleSupportMenu = () => {
+      supportMenu?.classList.toggle(hyo.open);
+    };
+
+    support?.addEventListener("click", toggleSupportMenu);
+    return () => support?.removeEventListener("click", toggleSupportMenu);
+  }, []);
+
+  useEffect(() => {
+    const hbIcon = document.querySelector(`.${hyo.hb_icon}`);
+    const slideMenu = document.querySelector(`.${hyo.hb_submenu}`);
+    const dim = document.querySelector(`.${hyo.dim}`);
+    const closeBtn = document.querySelector(`.${hyo.allMenuclose}`);
+
+    const openMenu = () => {
+      slideMenu?.classList.add(hyo.open);
+      dim?.classList.add(hyo.open);
+    };
+
+    const closeMenu = () => {
+      slideMenu?.classList.remove(hyo.open);
+      dim?.classList.remove(hyo.open);
+    };
+
+    hbIcon?.addEventListener("click", openMenu);
+    closeBtn?.addEventListener("click", closeMenu);
+    dim?.addEventListener("click", closeMenu);
+
+    return () => {
+      hbIcon?.removeEventListener("click", openMenu);
+      closeBtn?.removeEventListener("click", closeMenu);
+      dim?.removeEventListener("click", closeMenu);
+    };
+  }, []);
 
   return (
     <header id={id} className={isScrolled ? hyo.scrolled : ""}>
@@ -43,7 +76,7 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
                   로그인/회원가입
                 </Link>
               </li>
-              <li className={`relative`} onClick={toggleDropdown}>
+              <li className={`${hyo.support} relative`}>
                 <span className="text-white flex text-m-small-text gap-2 cursor-pointer">
                   고객지원
                   <img
@@ -51,7 +84,7 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
                     alt="더보기"
                   />
                 </span>
-                <ul className={`${hyo.hide_menu} ${isDropdown ? "" : "hidden"} w-20 h-20 absolute bg-white top-5 left-[-0.9375rem] z-[200] shadow-[0_0.125rem_0.4375rem_rgba(0,0,0,0.5)]`} >
+                <ul className={`${hyo.hide_menu} hidden w-20 h-20 absolute bg-white top-5 left-[-0.9375rem] z-[200] shadow-[0_0.125rem_0.4375rem_rgba(0,0,0,0.5)]`} >
                   <li className={`mt-[0.4rem] flex justify-center`}>
                     <Link to="/service/guide">이용가이드</Link>
                   </li>
@@ -80,7 +113,7 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
               </Link>
             </h1>
             <div className="mr-[1.25rem] cursor-pointer relative z-[1000]">
-              <div className={` hb_icon p-0 onClick={}`}>
+              <div className={`${hyo.hb_icon}`}>
                 <img
                   src="https://d-hye.github.io/source/img/icon/menu-all.svg"
                   alt="전체메뉴"

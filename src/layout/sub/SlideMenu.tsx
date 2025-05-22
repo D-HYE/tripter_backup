@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import hyo from '../../scss/hyo.slidemenu.module.scss'
 
 
-
-const SlideMenu = () => {
+const SlideMenu :React.FC = () => {
+    
     return (
-              <div className={`${hyo.hb_submenu} flex flex-col inset-0 bg-trip-white max-w-[25rem] flex-grow fixed z-[999]`}>
-                <div id="dim-background" className={`${hyo.dim}`}></div>
-                <div className={`${hyo.hb_item} flex flex-col flex-grow h-full relative bg-trip-white font-semismall-text`}>
-                  <div className="flex justify-end d-open">
-                    <button id="allMenuclose" className="p-4 mx-4">
+              <div className={`${hyo.hb_submenu}`}>
+                <div className={`${hyo.dim}`}></div>
+                <div className={`flex flex-col flex-grow h-full relative bg-trip-white font-semismall-text`}>
+                  <div className="flex justify-end">
+                    <button className={`${hyo.allMenuclose}`}>
                       <img 
                         src="https://d-hye.github.io/source/img/icon/x-01.svg"
                         className="d-block"

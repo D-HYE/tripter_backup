@@ -1,22 +1,42 @@
 //햄버거메뉴
 .hb_submenu {
-    transition: transform 0.3s ease-in-out;
-    transform: translateX(-100%);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  max-width: 25rem;
+  width: 100%; /* 필요 시 추가 */
+  flex-grow: 1;
+  background-color: #fff;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%);
     &.open {
       //자바스크립트 토글클래스명
-      transform: translateX(0%);
+      transform: translateX(0);
     }
   }
-  .dim {
+  .dim{
     position: fixed;
     top: 0;
     left: 374px;
-    // width: 100vw;
     height: 100%;
     background: rgba(0, 0, 0, 0.3);
+    z-index: 998;
+    display: none;
+    &.open{
+      display:block;
+      width: 100vw;
+    }
   }
-  .nextopen + div .dim {
-    width: 100vw;
+  .allMenuclose {
+  padding: 1rem;
+  margin: 0 1rem;
+  cursor: pointer;
+  background: transparent;
+  border: none;
   }
   // 메뉴리스트
   .hb_list {
