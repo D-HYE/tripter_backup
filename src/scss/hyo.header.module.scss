@@ -1,387 +1,143 @@
-#hd {
-    .search form {
-      gap: 0.2rem;
-    }
-    .search-bar {
-      border-radius: 0.75rem 0.3125rem 0.3125rem 0.75rem;
-      border: 2px solid var(--trip-blue);
-      outline: none;
-      padding: 0.3rem 1rem;
-    }
-  
-    .logo {
-      img {
-        height: 3.375rem;
-        transition: opacity 0.5s ease;
-      }
-    }
-  }
-  #user {
-    width: 100%;
-    div {
-      height: 2.5rem;
-    }
-    span,
-    a {
-      font-size: var(--m-small-text);
-    }
-    .support > span {
-      gap: 0.5rem;
-      cursor: pointer;
-    }
-  }
-  .hide-menu {
-    width: 5rem;
-    height: 5rem;
-    top: 1.25rem;
-    left: -0.9375rem;
-    background-color: #fff;
-    z-index: 200;
-    box-shadow: 0 0.125rem 0.4375rem rgba(0, 0, 0, 0.5);
-    li {
-      margin-top: 0.625rem;
-      display: flex;
-      justify-content: center;
-    }
-    a {
-      color: #0051d3;
-      font-weight: 500;
-      position: relative;
-      &::after {
-        content: "";
-        position: absolute;
-        left: 50%;
-        bottom: -0.3125rem;
-        opacity: 0;
-        width: 100%;
-        height: 0.125rem;
-        background: #0051d3;
-        transform: translateX(-50%);
-        transition: opacity 0.2s ease-in-out;
-      }
-      &:hover::after {
-        opacity: 1;
-      }
-    }
-  }
-  
-  #gnbbox {
-    position: fixed;
-    top: 2.5rem;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    background-color: white;
-    border-bottom: var(--trip-gray2) 1px solid;
-    width: 100%;
-    transition: height 0.3s;
-  }
-  
-  #gnb {
-    cursor: pointer;
-    transition: height 0.3s;
-    height: 5rem;
-    .hb-iconbox {
-      margin-right: 1.25rem;
-      margin-top: 0.3125rem;
-      cursor: pointer;
-    }
-  }
-  
-  .scrolled {
-    #gnbbox {
-      top: 0;
-      height: 2.5rem;
-  
-      .logo {
-        img {
-          width: 0;
-          opacity: 0; /* 이미지 숨김 효과 */
-          transition: opacity 0.3s ease, width 0.3s ease;
-        }
-      }
-    }
-  
-    #gnb {
-      top: 0;
-      height: 2.5rem;
-      transition: all 0.3s ease;
-    }
-  }
-  
-  #menu a {
-    font-size: var(--semismall-text);
-    font-family: var(--theJamsil-medium);
-    transition: font-size 0.5s ease;
+.hb_icon{
+  padding: 0;
+}
+.hide_menu a {
+    font-size:var(--m-small-text);
+    color: #0051d3;
+    font-weight: 500;
     position: relative;
     &::after {
       content: "";
       position: absolute;
-      left: 50%;
-      bottom: -0.125rem;
+      left: 0;
+      bottom: -0.3125rem;
       opacity: 0;
       width: 100%;
       height: 0.125rem;
-      background: var(--trip-blue);
-      transform: translateX(-50%);
-      transition: 0.2s ease-in-out;
+      background: #0051d3;
     }
-    &:hover {
-      &::after {
-        bottom: -0.3125rem;
-        opacity: 1;
+    &:hover::after {
+      opacity: 1;
+    }
+  }
+.gnb { 
+  transition: height 0.3s;
+}
+.scrolled {
+  .gnbbox {
+    top: 0;
+    height: 2.5rem;
+
+    .logo {
+      img {
+        width: 0;
+        opacity: 0; /* 이미지 숨김 효과 */
+        transition: opacity 0.3s ease, width 0.3s ease;
       }
     }
   }
-  #menu a.scrolled {
+
+  .gnb {
+    top: 0;
+    height: 2.5rem;
+    transition: all 0.3s ease;
+  }
+}
+  
+.menu a {
+font-size: var(--semismall-text);
+font-family: var(--theJamsil-medium);
+transition: font-size 0.5s ease;
+position: relative;
+&::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -0.125rem;
+  opacity: 0;
+  width: 100%;
+  height: 0.125rem;
+  background: var(--trip-blue);
+  transform: translateX(-50%);
+  transition: 0.2s ease-in-out;
+}
+&:hover {
+  &::after {
+    bottom: -0.3125rem;
+    opacity: 1;
+  }
+}
+}
+.menu a.scrolled {
+  font-size: var(--small-text);
+}
+
+  
+
+//큰태블릿
+@media only screen and (max-width: 1024px) {
+    .menu a {
     font-size: var(--small-text);
+    font-family: var(--theJamsil-medium);
+    transition: font-size 0.5s ease;
   }
-  
-  .wishlist-btn {
-    margin-left: 1rem;
-    margin-bottom: -0.125rem;
+  .gnb {
+    .logo img {
+      width: 10.18431rem;
+      height: 3.375rem;
+    }
   }
-  .dim {
-    position: fixed;
+}
+//태블릿
+@media only screen and (max-width: 768px) {
+  .gnbbox {
+    position: relative;
     top: 0;
-    left: 374px;
-    // width: 100vw;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
   }
-  .nextopen + div .dim {
-    width: 100vw;
-  }
-  //햄버거메뉴
-  #hb-submenu {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    background-color: #fff;
-    max-width: 25rem;
-    flex-grow: 1;
-    z-index: 100;
-    transition: transform 0.3s ease-in-out;
-    transform: translateX(-100%);
-    #hb-item {
-      background-color: #fff;
-    }
-    .p16 {
-      padding: 1rem;
-    }
-    &.open {
-      //자바스크립트 토글클래스명
-      transform: translateX(0%);
-    }
-    .m-1 {
-      font-size: var(--semismall-text);
-      font-family: var(--theJamsil-medium);
-    }
-    transform .social-icon {
-      li {
-        margin: 1rem 0;
-        a {
-          display: flex;
-          width: 3rem;
-          height: 3rem;
-          justify-content: center;
-          align-items: center;
-          border-radius: 50%;
-          &.naver {
-            background-color: #03c75a;
-          }
-          &.kakao {
-            background-color: #fae100;
-          }
-          &.google {
-            border: solid 1px #0051d3;
-          }
-        }
-      }
-    }
-    .mainheader {
-      border-top: 1px solid #ccc;
-      border-bottom: 1px solid #ccc;
-  
-      .user-box {
-        background-color: rgba(255, 218, 0, 0.25);
-        padding: 1rem 2.25rem;
-        align-items: end;
-      }
-      .profileicon {
-        border-radius: 50%;
-        background: #9fc1ff;
-        display: flex;
-        width: 48px;
-        height: 48px;
-        justify-content: center;
-        align-items: center;
-      }
-      .userprofile {
-        font-size: var(--small-text);
-        margin-right: auto;
-        margin-left: 1.5rem;
-        .hi {
-          margin-bottom: 0.5rem;
-          line-height: 1;
-        }
-        .username {
-          font-size: var(--semismall-text);
-        }
-      }
+  body.scrolled {
+    .gnbbox {
+      position: fixed;
     }
   }
-  #login {
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-  }
-  #hb-item {
-    flex-grow: 1;
-    height: 100%;
-    font-size: var(--semismall-text);
-  
-    .menu-icon {
-      background-color: white;
-      padding: 0.75rem 2.25rem;
-  
-      a {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-size: 0.875rem;
-  
-        img {
-          margin: 0.625rem;
-        }
-      }
+  .gnb {
+    .logo img {
+      height: 2.8rem;
     }
   }
-  // 메뉴리스트
-  #hb-list {
-    margin: 2.25rem 2.5rem;
-    flex-grow: 1;
-    overflow-y: auto;
-    .scroll {
-      overflow-y: auto;
-    }
-    div ul {
-      margin-bottom: 1.875rem;
-      row-gap: 0.5rem;
-    }
-    .feelter,
-    .planner {
-      margin-bottom: 0.9375rem;
-      span {
-        font-family: var(--theJamsil-medium);
-      }
-    }
-    .arrow {
-      width: 1.5rem;
-      height: 1.5rem;
-    }
-    .communitymenu {
-      li {
-        width: 50%;
-        a {
-          font-size: var(--small-text);
-          font-family: var(--theJamsil-medium);
-        }
-      }
-    }
+  .dim{
+    left: 250px;
   }
-  #hb-sublist {
-    div {
-      margin-bottom: 1rem;
-      a {
-        font-family: var(--theJamsil-medium);
-      }
-    }
-    .sublist {
-      li {
-        width: 50%;
-        display: inline-block;
-        a {
-          font-size: var(--small-text);
-        }
-        .allPass {
-          font-family: var(--theJamsil-medium);
-        }
-      }
-    }
-  }
-  
-  //작은pc
-  @media only screen and (max-width: 1280px) {
-  }
-  //큰태블릿
-  @media only screen and (max-width: 1024px) {
-    #menu a {
-      font-size: var(--small-text);
-      font-family: var(--theJamsil-medium);
-      transition: font-size 0.5s ease;
-    }
-    #gnb {
-      .logo img {
-        width: 10.18431rem;
-        height: 3.375rem;
-      }
-    }
-  }
-  //태블릿
-  @media only screen and (max-width: 768px) {
-    #gnbbox {
-      position: relative;
+  .mb_searchbox {
+    .mb_search {
       top: 0;
-    }
-    body.scrolled {
-      #gnbbox {
-        position: fixed;
-      }
-    }
-    #gnb {
-      .logo img {
-        height: 2.8rem;
-      }
-    }
-    .dim{
-      left: 250px;
-    }
-    #mb-searchbox {
-      .mb-search {
-        top: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 4rem;
-        background-color: rgba(0, 81, 211, 0.8);
-        z-index: 300;
-        transition: all 0.3s ease-in-out;
-        .mb-searchbar {
-          border-radius: 12px 5px 5px 12px;
-          border: 2px solid #fff;
-          background-color: rgba(0, 81, 211, 0.1);
-          outline: none;
-          padding-left: 20px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 4rem;
+      background-color: rgba(0, 81, 211, 0.8);
+      z-index: 300;
+      transition: all 0.3s ease-in-out;
+      .mb_searchbar {
+        border-radius: 12px 5px 5px 12px;
+        border: 2px solid #fff;
+        background-color: rgba(0, 81, 211, 0.1);
+        outline: none;
+        padding-left: 20px;
+        color: #fff;
+        &::placeholder {
           color: #fff;
-          &::placeholder {
-            color: #fff;
-          }
         }
       }
     }
   }
-  //리얼모바일
-  @media only screen and (max-width: 575px) {
-    #gnb {
-      height: 4rem;
-    }
-    #mb-searchbox {
-      top: 40px;
-    }
-    #hb-item {
-      width: 100%;
-    }
+}
+//리얼모바일
+@media only screen and (max-width: 575px) {
+  .gnb {
+    height: 4rem;
   }
+  .mb_searchbox {
+    top: 40px;
+  }
+}
   

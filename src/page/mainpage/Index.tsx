@@ -1,10 +1,11 @@
 import React from 'react';
+import Section1 from "./Section1"
 
-const Index: React.FC  = () => {
+const Index: React.FC<{ id: string }>  = ({id}) => {
     return (
-        <div>
-            
-        </div>
+        <main id={id}>
+            <Section1/>
+        </main>
     );
 };
 
