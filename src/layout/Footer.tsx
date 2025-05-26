@@ -15,7 +15,7 @@ const Footer: React.FC<FooterProps<Record<string, unknown>>> = ({ footerVariant}
 
     return (
         <div className={`footerArea ${footerClass}`}>
-            <footer className={` xl:pt-[2.5rem] xl:pb-[3.75rem] px-0`}>
+            <footer className={` xl:pt-[2.5rem] xl:pb-[3.75rem] lg:py-[1.75rem] md:py-[1.5rem] px-0`}>
                 <div className="px-[16px] xl:px-[32px] xl:mx-auto container xl:flex justify-between xl:items-end">
                 <div className="flex flex-row items-center gap-[1rem] xl:block">
                     <div className={`${ekcss.imgbox} h-[3.6rem] h-[60px] flex mb-[14px] `}>
@@ -23,7 +23,7 @@ const Footer: React.FC<FooterProps<Record<string, unknown>>> = ({ footerVariant}
                     </div>
                     {/*768이하 앱다운 버튼*/} 
                     <div className={`${ekcss.download_btn} block xl:hidden ml-[1rem]`}>
-                        <Link to="#" className="px-[1rem] py-[10px]">트립터 앱 다운로드</Link>
+                        <Link to="#" className="px-[1rem] py-[10px] whitespace-nowrap">트립터 앱 다운로드</Link>
                     </div>
                 </div>
 
