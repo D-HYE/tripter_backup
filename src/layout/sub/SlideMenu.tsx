@@ -12,9 +12,11 @@ interface SlideMenuProps {
 }
 
 const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
+  
+
   return (
     <div className={`${hyo.hb_submenu} ${isMenuOpen ? hyo.open : ''} flex flex-col inset-0 bg-trip-white max-w-[25rem] fixed z-[999]`}>
-      <div className={`${hyo.dim}`}></div>
+      <div className={`${hyo.dim}`} onClick={() => setIsMenuOpen(false)}></div>
       <div className={`flex flex-col flex-grow h-full relative bg-trip-white font-semismall-text`}>
         <div className="flex justify-end d-open">
           <button className="p-4 mx-4" onClick={() => setIsMenuOpen(false)}>

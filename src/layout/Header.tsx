@@ -8,6 +8,7 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isDropdown, setIsDropdown] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMbsearch, setIsMbsearch] = useState(false);
   const location = useLocation();
   
 
@@ -33,16 +34,20 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
   useEffect(()=>{
     setIsDropdown(false)
   },[location]);
-
+  //사이드메뉴 
   useEffect(()=>{
     setIsMenuOpen(false)
   },[location])
+  //모바일검색창
+  const toggleMbSearch = () =>{
+    setIsMbsearch(prev =>!prev);
+  };
 
   return (
     <header id={id} className={isScrolled ? hyo.scrolled : ""}>
       <div className="header_inner">
-        <div className={`bg-trip-blue pc w-100`}>
-          <div className="py-4 max-w-container mx-auto flex justify-end h-10">
+        <div className={`bg-trip-blue hidden md:block w-100`}>
+          <div className="py-4 max-w-container p-container-x mx-auto flex justify-end h-10">
             <ul className="flex gap-6 items-center">
               <li className="flex">
                 <Link to="/user" className="text-white text-m-small-text">
@@ -73,12 +78,11 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
           </div>
         </div>
 
-        <div className={`${hyo.gnbbox} fixed top-[2.5rem] left-0 right-0 z-[100] bg-white w-full border-b border-b-trip-gray2 transition-[height] duration-300`}>
-          <div className={`${hyo.gnb} max-w-[90rem] mx-auto flex justify-between items-center cursor-pointer h-20`}
-          >
+        <div className={`${hyo.gnbbox} relative top-0 md:fixed md:top-[2.5rem] md:left-0 md:right-0 z-[100] bg-white w-full border-b border-b-gray-200 md:transition-[height] duration-300`}>
+          <div className={`${hyo.gnb} max-w-container mx-auto p-container-x flex justify-between items-center cursor-pointer h-[40px] md:h-20`}>
             <h1 className={`${hyo.logo} order-2 mx-auto`}>
               <Link to="/">
-                <img className={`h-[3.375rem] transition-opacity duration-500 ease-in-out`}
+                <img className={`w-[10.184rem] h-[1.75rem] md:h-[3.375rem] transition-opacity duration-500 ease-in-out`}
                   src="https://d-hye.github.io/source/img/logo/logo_TRT_basic.svg"
                   alt="트립터"
                 />
@@ -97,7 +101,7 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
               </div>
             </div>
 
-            <ul className={`${hyo.menu} flex gap-6 order-1 pc`}>
+            <ul className={`${hyo.menu} gap-6 order-1 hidden md:flex`}>
               <li>
                 <Link
                   to="/tripRoute/myFeelter"
@@ -123,21 +127,21 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
                 </Link>
               </li>
             </ul>
-            <ul className="icon flex items-center order-3">
+            <ul className="flex items-center order-3">
               <li className={hyo.search}>
-                <form action="/" className="flex items-center gap-[0.2rem]">
+                <form onSubmit={(e) =>{
+                  if(window.innerWidth < 768){
+                    e.preventDefault(); toggleMbSearch();}}} action="/" className="flex items-center gap-[0.2rem]">
                   <input
                     type="text"
-                    className={`${isScrolled ? hyo.scrolled : ""} pc rounded-l-[0.75rem] rounded-r-[0.3125rem] border-[2px] border-trip-blue outline-none px-4`}
+                    className={`${isScrolled ? hyo.scrolled : ""}hidden md:block rounded-l-[0.75rem] rounded-r-[0.3125rem] border-[2px] border-trip-blue outline-none px-4`}
                     name="search"
                     placeholder="눈의 나라 훗카이도로~!"
                   />
-                  <input
-                    type="image"
-                    className="search-icon py-0"
-                    src="https://d-hye.github.io/source/img/icon/search-02.svg"
-                    alt="검색"
-                  />
+                  <button type="submit" className="search-icon py-0">
+                    <img src="https://d-hye.github.io/source/img/icon/search-02.svg"
+                    alt="검색" />
+                  </button>
                 </form>
               </li>
               <li>
@@ -152,14 +156,15 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
               </li>
             </ul>
           </div>
-          <div className={`${hyo.mb_searchbox} hidden mb`}>
+          {isMbsearch && (
+          <div className={`top-[40px] md:hidden`}>
             <form
               action="/"
-              className="mb_search flex items-center justify-end"
+              className={`${hyo.mb_search} flex items-center justify-end`}
             >
               <input
                 type="text"
-                className="mb_searchbar"
+                className={`${hyo.mb_searchbar}`}
                 name="search"
                 placeholder="눈의 나라 훗카이도로~!"
               />
@@ -171,6 +176,7 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
               />
             </form>
           </div>
+          )}
         </div>
       </div>
      

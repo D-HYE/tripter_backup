@@ -3,6 +3,9 @@ export default {
   content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      screens:{
+        'xs':'575px' //사용 xs:넣기
+      },
       colors: {
         'trip-blue': '#0051D3',
         'trip-yellow': '#FFDA00',
@@ -56,8 +59,8 @@ export default {
         'container-m': '48rem',
       },
       padding: {
-        'container-x': '1.25rem',
-        'container-m-x': '0.5rem',
+        'container-x': '0 1.25rem',
+        'container-m-x': '0 0.5rem',
       }
     },
   },
