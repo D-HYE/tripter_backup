@@ -3,6 +3,9 @@ export default {
   content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      screens:{
+        'xs':'575px' //사용 xs:넣기
+      },
       colors: {
         'trip-blue': '#0051D3',
         'trip-yellow': '#FFDA00',
