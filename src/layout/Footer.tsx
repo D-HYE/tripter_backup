@@ -15,7 +15,7 @@ const Footer: React.FC<FooterProps<Record<string, unknown>>> = ({ footerVariant}
 
     return (
         <div className={`footerArea ${footerClass}`}>
-            <footer className={` xl:pt-[2.5rem] xl:pb-[3.75rem] px-0`}>
+            <footer className={`xl:pt-[2.5rem] xl:pb-[3.75rem] px-[1rem] py-[1.5rem]`}>
                 <div className="px-[16px] xl:px-[32px] xl:mx-auto container xl:flex justify-between xl:items-end">
                 <div className="flex flex-row items-center gap-[1rem] xl:block">
                     <div className={`${ekcss.imgbox} h-[3.6rem] h-[60px] flex mb-[14px] `}>
@@ -26,9 +26,9 @@ const Footer: React.FC<FooterProps<Record<string, unknown>>> = ({ footerVariant}
                         <Link to="#" className="px-[1rem] py-[10px]">트립터 앱 다운로드</Link>
                     </div>
                 </div>
-`
+
                     <div className={ekcss.footer_menu}>
-                        <ul className="xl:gap-[2.5rem] flex xl:flex-row xl:py-[0.625rem] xl:px-[0]">
+                        <ul className="xl:gap-[2.5rem] gap-[1rem] flex xl:flex-row xl:py-[0.625rem] xl:px-[0]">
                             <li><Link to="#none">회사소개</Link></li>
                             <li><Link to="#none">사업자정보</Link></li>
                             <li><Link to="#none">이용약관</Link></li>
@@ -36,7 +36,7 @@ const Footer: React.FC<FooterProps<Record<string, unknown>>> = ({ footerVariant}
                             <li><Link to="#none">제휴 / 광고 문의</Link></li>
                         </ul>
                         <div>
-                            <div className={`${ekcss.company_info} flex`}>
+                            <div className={`${ekcss.company_info} flex `}>
                                 <i>(주)트립터</i>
                                 <i><span>대표자</span> 신은경</i>
                                 <i><span>고객센터</span> 0000-0000</i>
