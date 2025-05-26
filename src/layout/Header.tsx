@@ -2,84 +2,69 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import hyo from "../scss/hyo.header.module.scss"
+import SlideMenu from "./sub/SlideMenu"; 
 
 const Header: React.FC<{ id: string }> = ({ id }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDropdown, setIsDropdown] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 40);
-    };
-    window.addEventListener("scroll", handleScroll);
-
-    const supports = document.querySelectorAll(".nextopentrigger");
-
-    const allMenuclose = document.getElementById("allMenuclose");
-    const dim = document.getElementById("dim-background");
-
-    const hb_icon = document.getElementById("hb-icon");
-
-    if (supports) {
-      supports.forEach((support) => {
-        support.addEventListener("click", () => {
-          support.classList.toggle("nextopen");
-        });
-      });
+  const handleScroll = () => {
+    if (window.scrollY > 40) {
+    setIsScrolled(true);
+    } else {
+    setIsScrolled(false);
     }
-    const closeMenu = () => {
-      if (hb_icon) {
-        hb_icon.classList.remove("nextopen");
-      }
-    };
-    if (allMenuclose) {
-      allMenuclose.addEventListener("click", closeMenu);
-    }
+  };
+  window.addEventListener("scroll", handleScroll);
 
-    if (dim) {
-      dim.addEventListener("click", closeMenu);
-    }
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+  return () => {
+    window.removeEventListener("scroll", handleScroll);
+  };
   }, []);
-  useEffect(() => {
-    const allElements = document.querySelectorAll(".nextopen");
+  
+  //고객지원
+  const toggleDropdown =() =>{
+    setIsDropdown(prev => !prev)
+  }
+  useEffect(()=>{
+    setIsDropdown(false)
+  },[location]);
 
-    allElements.forEach((element) => {
-      element.classList.remove("nextopen");
-    });
-  }, [location]);
+  useEffect(()=>{
+    setIsMenuOpen(false)
+  },[location])
 
   return (
-    <header id={id} className={isScrolled ? "scrolled" : ""}>
+    <header id={id} className={isScrolled ? hyo.scrolled : ""}>
       <div className="header_inner">
-        <div id="user" className="trip-bl pc">
-          <div className="py-1 container d-flex justify-content-end">
-            <ul className="d-flex gap-3 align-items-center">
-              <li className="d-flex">
-                <Link to="/user" className="text-white">
+        <div className={`bg-trip-blue pc w-100`}>
+          <div className="py-4 max-w-container mx-auto flex justify-end h-10">
+            <ul className="flex gap-6 items-center">
+              <li className="flex">
+                <Link to="/user" className="text-white text-m-small-text">
                   로그인/회원가입
                 </Link>
               </li>
-              <li className="support rel">
-                <span className="text-white d-flex nextopentrigger ">
+              <li className={`relative`} onClick={toggleDropdown}>
+                <span className="text-white flex text-m-small-text gap-2 cursor-pointer">
                   고객지원
                   <img
                     src="https://d-hye.github.io/source/img/icon/polygon-1.svg"
                     alt="더보기"
                   />
                 </span>
-                <ul className={`hide-menu abs d-none`}>
-                  <li>
+                <ul className={`${hyo.hide_menu} ${isDropdown ? "" : "hidden"} w-20 h-20 absolute bg-white top-5 left-[-0.9375rem] z-[200] shadow-[0_0.125rem_0.4375rem_rgba(0,0,0,0.5)]`} >
+                  <li className={`mt-[0.4rem] flex justify-center`}>
                     <Link to="/service/guide">이용가이드</Link>
                   </li>
-                  <li>
+                  <li className={`mt-[0.4rem] flex justify-center`}>
                     <Link to="/service/faq">FAQ</Link>
                   </li>
-                  <li>
+                  <li className={`mt-[0.4rem] flex justify-center`}>
                     <Link to="/service/ask">문의게시판</Link>
                   </li>
                 </ul>
@@ -88,304 +73,35 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
           </div>
         </div>
 
-        <div id="gnbbox">
-          <div
-            id="gnb"
-            className="container d-flex justify-content-between align-items-center"
+        <div className={`${hyo.gnbbox} fixed top-[2.5rem] left-0 right-0 z-[100] bg-white w-full border-b border-b-trip-gray2 transition-[height] duration-300`}>
+          <div className={`${hyo.gnb} max-w-[90rem] mx-auto flex justify-between items-center cursor-pointer h-20`}
           >
-            <h1 className="logo order-2 mx-auto">
+            <h1 className={`${hyo.logo} order-2 mx-auto`}>
               <Link to="/">
-                <img
+                <img className={`h-[3.375rem] transition-opacity duration-500 ease-in-out`}
                   src="https://d-hye.github.io/source/img/logo/logo_TRT_basic.svg"
                   alt="트립터"
                 />
-                <span className="d-none">트립터</span>
+                <span className="hidden">트립터</span>
               </Link>
             </h1>
-            <div className="hb-iconbox">
-              <div id="hb-icon" className="p-0 moveleft nextopentrigger">
+            <div className="mr-[1.25rem] cursor-pointer relative z-[1000]">
+              {/* 전체메뉴 트리거 */}
+              <div className={` ${hyo.hb_icon}`} onClick={()=>{ 
+                setIsMenuOpen(true)
+              }}>
                 <img
                   src="https://d-hye.github.io/source/img/icon/menu-all.svg"
                   alt="전체메뉴"
                 />
               </div>
-              {/* 햄버거 소메뉴 */}
-              <div id="hb-submenu" className={`d-flex flex-column`}>
-                <div id="dim-background" className={`dim`}></div>
-                <div id="hb-item" className="d-flex flex-column rel">
-                  <div className="d-flex justify-content-end d-open">
-                    <button id="allMenuclose" className="p16 mx-1">
-                      <img
-                        src="https://d-hye.github.io/source/img/icon/x-01.svg"
-                        className="d-block"
-                        alt="닫기"
-                      />
-                    </button>
-                  </div>
-
-                  {/* 로그인 전 */}
-                  <div id="login" className="d-none">
-                    <div className="m-2">
-                      <span>로그인/회원가입</span>
-                    </div>
-                    <ul className="social-icon d-flex justify-content-center gap-3">
-                      <li>
-                        <a className="naver" href="/">
-                          <img
-                            src="https://d-hye.github.io/source/img/icon/naver.svg"
-                            alt="naver"
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a className="kakao" href="/">
-                          <img
-                            src="https://d-hye.github.io/source/img/icon/kakao.svg"
-                            alt="kakao"
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a className="google" href="/">
-                          <img
-                            src="https://d-hye.github.io/source/img/icon/google.svg"
-                            alt="google"
-                          />
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-
-                  {/* 로그인 후 */}
-                  <div className="mainheader">
-                    <div className="user-box d-flex align-content-end justify-content-between">
-                      <div className="profileicon">
-                        <img
-                          src="https://d-hye.github.io/source/img/icon/user-profile-02.svg"
-                          className="d-block"
-                          alt=""
-                        />
-                      </div>
-                      <div className="userprofile">
-                        <div className="hi">
-                          <span>안녕하세요!</span>
-                        </div>
-                        <div>
-                          트립터<span className="username">###</span>님
-                        </div>
-                      </div>
-                      <a className="settings" href="/">
-                        <img
-                          className="d-block"
-                          src="https://d-hye.github.io/source/img/icon/settings.svg"
-                          alt="설정"
-                        />
-                      </a>
-                    </div>
-                    <ul className="menu-icon d-flex justify-content-between">
-                      <li>
-                        <Link to="/user" className="heart">
-                          <img
-                            src="https://d-hye.github.io/source/img/icon/heart_02.svg"
-                            className="d-block"
-                            alt="내찜"
-                          />
-                          <span>내 찜</span>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/user">
-                          <img
-                            src="https://d-hye.github.io/source/img/icon/travel.svg"
-                            className="d-block"
-                            alt="내여행"
-                          />
-                          <span>내 여행</span>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/user">
-                          <img
-                            src="https://d-hye.github.io/source/img/icon/layer.svg"
-                            className="d-block"
-                            alt="가계부"
-                          />
-                          <span>내 가계부</span>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="/user">
-                          <img
-                            src="https://d-hye.github.io/source/img/icon/pencil-02.svg"
-                            className="d-block"
-                            alt="내후기"
-                          />
-                          <span>내 후기</span>
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-
-                  {/* 메뉴리스트 */}
-                  <div id="hb-list" className="d-flex flex-column">
-                    <ul className="tapPart d-flex flex-column">
-                      <li className="feelter">
-                        <Link
-                          to="/tripRoute/myFeelter"
-                          className="d-flex align-items-center"
-                        >
-                          <span className="text-blue">MY FEEL:TER</span>
-                        </Link>
-                      </li>
-                      <li className="planner">
-                        <Link
-                          to="/tripRoute/planMaker"
-                          className="d-flex align-items-center"
-                        >
-                          <span className="text-blue">계획짜기</span>
-                        </Link>
-                      </li>
-                    </ul>
-                    <div className="d-flex flex-column scroll">
-                      <ul className="d-flex communitymenu flex-wrap">
-                        <li>
-                          <Link
-                            to="/tripTalk/findFriend"
-                            className="friendfind"
-                          >
-                            동행 구해요
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/tripTalk/findPlan" className="planaround">
-                            계획 둘러보기
-                          </Link>
-                        </li>
-                        <li>
-                          <Link
-                            to="/tripTalk/findReview"
-                            className="reviewaround"
-                          >
-                            후기 둘러보기
-                          </Link>
-                        </li>
-                      </ul>
-                      <ul className="d-flex communitymenu flex-wrap">
-                        <li>
-                          <Link to="/" className="mbrecomm">
-                            MD추천
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="/tripterEvent" className="event">
-                            이벤트
-                          </Link>
-                        </li>
-                      </ul>
-                      <ul id="hb-sublist">
-                        <li>
-                          <div>
-                            <Link to="/products/airplane/onSale">항공권</Link>
-                          </div>
-                          <ul className="sublist d-flex flex-wrap">
-                            <li>
-                              <Link to="/products/airplane/onSale">
-                                특가항공
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/products/airplane/domestic">
-                                국내항공
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/products/airplane/overseas">
-                                국외항공
-                              </Link>
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                          <div>
-                            <Link to="/products/accommodation/onSale">
-                              숙소
-                            </Link>
-                          </div>
-                          <ul className="sublist d-flex flex-wrap">
-                            <li>
-                              <Link to="/products/accommodation/onSale">
-                                특가숙소
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/products/accommodation/hotel">
-                                호텔
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/products/accommodation/guestHouse">
-                                게스트하우스
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/products/accommodation/countryside">
-                                펜션&캠핑
-                              </Link>
-                            </li>
-                          </ul>
-                        </li>
-                        <li>
-                          <div>
-                            <Link to="/products/reservation/allPass">
-                              티켓&투어
-                            </Link>
-                          </div>
-                          <ul id="ticket" className="sublist d-flex flex-wrap">
-                            <li>
-                              <Link
-                                className="allPass text-blue"
-                                to="/products/reservation/allPass"
-                              >
-                                올패스권
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/products/reservation/localTour">
-                                현지투어
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/products/reservation/themePark">
-                                테마파크
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/products/reservation/ticket">
-                                전시체험
-                              </Link>
-                            </li>
-                            <li>
-                              <Link to="/products/reservation/train">
-                                철도여행
-                              </Link>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
 
-            {/* Dim 배경 */}
-            {/* <div id="dim-background" className={`dim d-none`} ></div> */}
-
-            <ul id="menu" className="d-flex gap-3 order-1 pc">
+            <ul className={`${hyo.menu} flex gap-6 order-1 pc`}>
               <li>
                 <Link
                   to="/tripRoute/myFeelter"
-                  className={isScrolled ? "scrolled" : ""}
+                  className={isScrolled ? hyo.scrolled : ""}
                 >
                   계획짜기
                 </Link>
@@ -393,7 +109,7 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
               <li>
                 <Link
                   to="/tripTalk/findPlan"
-                  className={isScrolled ? "scrolled" : ""}
+                  className={isScrolled ? hyo.scrolled : ""}
                 >
                   트립톡
                 </Link>
@@ -401,18 +117,18 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
               <li>
                 <Link
                   to="/tripterEvent"
-                  className={isScrolled ? "scrolled" : ""}
+                  className={isScrolled ? hyo.scrolled : ""}
                 >
                   이벤트
                 </Link>
               </li>
             </ul>
-            <ul className="icon d-flex align-items-center order-3">
-              <li className="search">
-                <form action="/" className="d-flex align-items-center">
+            <ul className="icon flex items-center order-3">
+              <li className={hyo.search}>
+                <form action="/" className="flex items-center gap-[0.2rem]">
                   <input
                     type="text"
-                    className={`${hyo.search_bar} pc ${isScrolled ? "scrolled" : ""}`}
+                    className={`${isScrolled ? hyo.scrolled : ""} pc rounded-l-[0.75rem] rounded-r-[0.3125rem] border-[2px] border-trip-blue outline-none px-4`}
                     name="search"
                     placeholder="눈의 나라 훗카이도로~!"
                   />
@@ -425,7 +141,7 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
                 </form>
               </li>
               <li>
-                <button className="wishlist-btn p-0">
+                <button className="ml-4 mb-[-0.125rem] p-0">
                   <Link to="/">
                     <img
                       src="https://d-hye.github.io/source/img/icon/travel_bl.svg"
@@ -436,20 +152,20 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
               </li>
             </ul>
           </div>
-          <div id="mb-searchbox" className="d-none mb">
+          <div className={`${hyo.mb_searchbox} hidden mb`}>
             <form
               action="/"
-              className="mb-search d-flex align-items-center justify-content-end"
+              className="mb_search flex items-center justify-end"
             >
               <input
                 type="text"
-                className="mb-searchbar"
+                className="mb_searchbar"
                 name="search"
                 placeholder="눈의 나라 훗카이도로~!"
               />
               <input
                 type="image"
-                className="mb-searchicon"
+                className="mb_searchicon"
                 src="https://d-hye.github.io/source/img/icon/search-01.svg"
                 alt="검색"
               />
@@ -457,6 +173,10 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
           </div>
         </div>
       </div>
+     
+      <SlideMenu setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen}   ></SlideMenu>
+     
+      
     </header>
   );
 };

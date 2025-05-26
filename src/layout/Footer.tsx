@@ -15,7 +15,7 @@ const Footer: React.FC<FooterProps<Record<string, unknown>>> = ({ footerVariant}
 
     return (
         <div className={`footerArea ${footerClass}`}>
-            <footer className={`xl:pt-[2.5rem] xl:pb-[3.75rem] px-[1rem] py-[1.5rem]`}>
+            <footer className={` xl:pt-[2.5rem] xl:pb-[3.75rem] px-0`}>
                 <div className="px-[16px] xl:px-[32px] xl:mx-auto container xl:flex justify-between xl:items-end">
                 <div className="flex flex-row items-center gap-[1rem] xl:block">
                     <div className={`${ekcss.imgbox} h-[3.6rem] h-[60px] flex mb-[14px] `}>
