@@ -1,10 +1,11 @@
-import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Index from "../page/mainpage/Index"
 
 const Contents:React.FC = () => {
     return (
-        <div>
-            
-        </div>
+        <Routes>
+           <Route path="/" element={<Index id="mainPage" />} />
+        </Routes>
     );
 };
 
