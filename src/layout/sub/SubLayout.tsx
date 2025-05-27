@@ -16,12 +16,12 @@ function SubLayout( { children, id }: LayoutProps ) {
     
       useEffect(() => {
         async function fetchTabs() {
-          const data = await getNavTabs()
-          setNavTab(data)
-          console.log(data)
+            const data = await getNavTabs()
+            setNavTab(data)
+            console.log(data)
         }
         fetchTabs()
-      }, [])
+    }, [])
     
 
     return (
@@ -29,8 +29,8 @@ function SubLayout( { children, id }: LayoutProps ) {
             <section className={`Section bg-bg-gray`}>
                 <div className="sectionBanner h-[15.375rem] hidden md:block">
                     <div className="flex justify-center items-center flex-col text-center text-trip-blue">
-                        <h3 className="font-[TheJamsil500] text-huge-text">{tab}</h3>
-                        <p className="font-[TheJamsil500] text-medium-text">마이필터설명마이필터설명마이필터설명마이필터설명</p>
+                        <h3 className="font-[TheJamsil500] text-huge-text">{tabs.find((item) => item.tab_key === tab)?.tab_name || '트립터'}</h3>
+                        <p className="font-[TheJamsil500] text-medium-text">{tabs.find((item) => item.tab_key === tab)?.description || '트립터에서 더 다양한 혜택을 즐겨보세요'}</p>
                     </div>
                 </div>
                 <div className="subContWrap flex justify-center max-w-[64rem]">
@@ -40,7 +40,7 @@ function SubLayout( { children, id }: LayoutProps ) {
                                 .filter((item) => item.tab_group === id)
                                 .map((item) => (
                                     <li key={item.id} data-id={item.id} className={`text-[1.125rem] font-[TheJamsil500] ${item.tab_key} ${item.tab_key === tab ? 'active' : ''}`}>
-                                        <Link to={`/tripRoute/${item.tab_key}`}>{item.tab_name}</Link>
+                                        <Link to={`/${item.tab_group}/${item.tab_key}`}>{item.tab_name}</Link>
                                     </li>
                                 ))}
                         </ul>
