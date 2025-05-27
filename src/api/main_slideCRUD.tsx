@@ -1,13 +1,13 @@
 import supabase from '../config/supabaseApi'
 
 export interface MainBanner {
-  id?: number
+  id: number
   title: string
-  english: string
-  subtitle: string
+  subtitle?: string
   src: string
-  alt?: string
+  alt: string
   link?: string
+  text_color?: string
 }
 
 /** 전체 목록 조회 (Read) */
@@ -25,7 +25,7 @@ export async function getMainBanners(): Promise<MainBanner[]> {
   return data as MainBanner[]
 }
 
-/** 새 슬라이드 추가 (Create) */
+/** 새 슬라이드 추가 (Create) 
 export async function addMainBanner(slide: Omit<MainBanner, 'id'>): Promise<MainBanner[] | null> {
   const { data, error } = await supabase
     .from('main_banner')
@@ -38,8 +38,9 @@ export async function addMainBanner(slide: Omit<MainBanner, 'id'>): Promise<Main
 
   return data as MainBanner[]
 }
+*/
 
-/** 슬라이드 수정 (Update) */
+/** 슬라이드 수정 (Update)
 export async function updateMainBanner(id: number, updates: Partial<Omit<MainBanner, 'id'>>): Promise<MainBanner[] | null> {
   const { data, error } = await supabase
     .from('main_banner')
@@ -53,8 +54,8 @@ export async function updateMainBanner(id: number, updates: Partial<Omit<MainBan
 
   return data as MainBanner[]
 }
-
-/** 슬라이드 삭제 (Delete) */
+ */
+/** 슬라이드 삭제 (Delete)
 export async function deleteMainBanner(id: number): Promise<MainBanner[] | null> {
   const { data, error } = await supabase
     .from('main_banner')
@@ -68,3 +69,4 @@ export async function deleteMainBanner(id: number): Promise<MainBanner[] | null>
 
   return data as MainBanner[]
 }
+ */

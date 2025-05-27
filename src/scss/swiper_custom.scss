@@ -1,0 +1,52 @@
+.swiper-button-prev,
+.swiper-button-next{
+    width: 78px; height: 78px;
+    background: url("https://d-hye.github.io/source/img/icon/arrow-left.svg") no-repeat 15px 50%/48px, var(--trip-blue); border-radius: 40px;
+    text-indent: -9999px;
+    transition: .3s;
+
+    &:hover{width: 156px;}
+}
+.swiper-button-next{
+    background-image: url("https://d-hye.github.io/source/img/icon/arrow-right.svg");
+    background-position: calc(100% - 15px) 50%;
+}
+
+.section1{
+    .swiper-pagination{
+        left: 50%; bottom: 2.25rem; transform: translateX(-50%);
+        width: auto;
+        @media only screen and (min-width: 768px){
+            left: 15.625%; bottom: 10rem; transform: translateX(0%);
+        }
+        .swiper-pagination-bullet{
+            width: 8px; height: 8px;
+            background: var(--trip-white); border-radius: 5px;
+            opacity: 1;
+            transition: .3s;
+
+            &.swiper-pagination-bullet-active{
+                width: 24px;
+                background: var(--trip-yellow);
+            }
+            @media only screen and (min-width: 768px){
+                width: 10px; height: 10px;
+                &.swiper-pagination-bullet-active{width: 30px;}
+            }
+        }
+
+    }
+}
+
+.section2 .md_swiper{
+    .swiper-pagination{
+        bottom: 1.25rem;
+        .swiper-pagination-bullet{
+            background: var(--trip-yellow);
+            opacity: 1;
+            &.swiper-pagination-bullet-active{
+                background: var(--trip-blue);
+            }
+        }
+    }
+}

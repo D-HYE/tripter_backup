@@ -59,3 +59,56 @@ body ::-webkit-scrollbar-thumb {
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    .break-keep {
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+}
+
+.sectionBanner{
+    height: 15.375rem;
+    background: url("https://d-hye.github.io/source/img/main_img/mainslide2.jpg") no-repeat center/cover;
+}
+.subContWrap{
+    max-width: 64rem; 
+    padding: 2.5rem 0; margin: auto;
+    gap: 1.625rem;
+    .sectionList{
+        min-width: 14.75rem; height: fit-content;
+        padding: 5rem 1.25rem;
+        ul{
+            a{
+                font-family: var(--theJamsil-medium); font-size: var(--medium-text);
+                span{ 
+                    display: block;
+                    width: 24px; height: 24px; margin-left: 0.5rem;
+                    background: url("https://d-hye.github.io/source/img/icon/tab_icon/feelter.svg") no-repeat center/contain;
+                }
+            }
+            .active a{ 
+                color: var(--trip-blue);
+                span{
+                    background-image: url("https://d-hye.github.io/source/img/icon/tab_icon/c_feelter.svg");
+                }
+            }
+        }
+    }
+    .sectionCont{
+        flex-grow: 1;
+        padding: 0 0.5rem;
+    }
+
+    @media only screen and (max-width: 1024px){
+        flex-direction: column;
+        padding-top: 0;
+        .sectionList{
+            padding: 2rem 1rem;
+            border-radius: 0;
+            ul{
+                justify-content: center; flex-direction: row;
+            }
+        }
+    }
+}
+

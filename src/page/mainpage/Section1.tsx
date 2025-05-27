@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { useEffect, useState ,useRef } from 'react'
-import { getMainBanners, MainBanner } from '../../api/supabaseCRUD'
+//,useRef 
+import { getMainBanners, MainBanner } from '../../api/main_slideCRUD'
+
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
@@ -17,27 +19,27 @@ export default function Sectino1() {
     fetchSlides()
   }, [])
 
-  if (slides.length === 0) return <p>로딩 중...</p>
+  // if (slides.length === 0) return <p>로딩 중...</p>
 
   return (
     <section className="section section1">
       <div className="relative">
-          <Swiper className="main_swiper h-[100vw] md:h-[40rem]"
+          <Swiper className="main_swiper h-[100vw] md:h-[40rem] md:rounded-tl-full md:rounded-bl-full"
             modules={[Pagination, Autoplay]}
             pagination={{ el: ".swiper-pagination", clickable: true }}
-            autoplay={{ delay: 3000}}
+            autoplay={{delay: 3000}}
             loop = {true}
           >
               {slides.map((item, idx) => (
                 <SwiperSlide
                   key={item.alt}
-                  className={`swiper-slide${idx + 1} bg-cover bg-center bg-no-repeat`}
+                  className={`swiper-slide${idx + 1} bg-cover bg-left bg-no-repeat`}
                   style={{ backgroundImage: `url("${item.src}")` }}
                 >
-                  <Link to={item.link || "#none"}>
-                    <div className="slide_desc abs">
-                      <h2>{item.title}</h2>
-                      {item.subtitle && <p>{item.subtitle}</p>}
+                  <Link to={item.link || "#none"} className='block h-full'>
+                    <div className={`slide_desc absolute top-[10vw] left-[1rem] md:top-[10rem] md:left-[15.625%] max-w-[32rem] text-trip-white tracking-tighter break-keep ${item.text_color === 'black' ? 'text-black' : 'text-white'}`}>
+                      <h2 className="font-[TheJamsil700] text-[7.5vw] md:text-main-slide break-words">{item.title}</h2>
+                      {item.subtitle && <p className="mt-12 text-[4.375vw] md:text-big-text font-bold leading-[1.45] ">{item.subtitle}</p>}
                     </div>
                   </Link>
                 </SwiperSlide>
