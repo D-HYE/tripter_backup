@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import ekcss from "../scss/ek.footer.module.scss";
 interface FooterProps<T = Record<string, unknown>> {
     footerVariant: string;
@@ -7,6 +7,11 @@ interface FooterProps<T = Record<string, unknown>> {
 }
 
 const Footer: React.FC<FooterProps<Record<string, unknown>>> = ({ footerVariant}) => {
+    const location = useLocation();
+    const isHome = location.pathname === "/";
+
+    footerVariant = isHome ? "basic" : "";
+
     const footerConfig = footerVariant !== "basic" 
         ? { footerClass: ekcss.blFooter, imgSrc: "https://d-hye.github.io/source/img/logo/logo_TRT_wh.svg" }
         : { footerClass: ekcss.subFooter, imgSrc: "https://d-hye.github.io/source/img/logo/logo_TRT_basic.svg" };

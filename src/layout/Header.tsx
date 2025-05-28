@@ -64,13 +64,10 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
                 </span>
                 <ul className={`${hyo.hide_menu} ${isDropdown ? "" : "hidden"} w-20 h-20 absolute bg-white top-5 left-[-0.9375rem] z-[200] shadow-[0_0.125rem_0.4375rem_rgba(0,0,0,0.5)]`} >
                   <li className={`mt-[0.4rem] flex justify-center`}>
-                    <Link to="/service/guide">이용가이드</Link>
-                  </li>
-                  <li className={`mt-[0.4rem] flex justify-center`}>
                     <Link to="/service/faq">FAQ</Link>
                   </li>
                   <li className={`mt-[0.4rem] flex justify-center`}>
-                    <Link to="/service/ask">문의게시판</Link>
+                    <Link to="/bbs/ask">문의게시판</Link>
                   </li>
                 </ul>
               </li>
@@ -112,7 +109,7 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
               </li>
               <li>
                 <Link
-                  to="/tripTalk/findPlan"
+                  to="/bbs/findPlan"
                   className={isScrolled ? hyo.scrolled : ""}
                 >
                   트립톡

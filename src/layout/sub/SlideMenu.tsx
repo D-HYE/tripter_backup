@@ -154,12 +154,12 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
           <div className="flex flex-col overflow-y-auto">
             <ul className={`${hyo.communitymenu}`}>
               <li>
-                <Link to="/tripTalk/findFriend" className="friendfind">
+                <Link to="/bbs/findFriend" className="friendfind">
                   동행 구해요
                 </Link>
               </li>
               <li>
-                <Link to="/tripTalk/findPlan" className="planaround">
+                <Link to="/bbs/findPlan" className="planaround">
                   계획 둘러보기
                 </Link>
               </li>
