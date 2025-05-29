@@ -117,7 +117,7 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
               </li>
               <li>
                 <Link
-                  to="/tripterEvent/event1"
+                  to="/tripterEvent/tripterSpecial"
                   className={isScrolled ? hyo.scrolled : ""}
                 >
                   이벤트

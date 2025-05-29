@@ -1,0 +1,117 @@
+//--- main
+.img_box{
+    overflow: hidden;
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+.truncate{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-wrap: nowrap;
+}
+.horizontalScroll{
+    padding-bottom: 0.75rem;
+    @media screen and (min-width: 768px){padding-bottom: 0;}
+}
+.horizontalScroll::-webkit-scrollbar{height: 5px;}
+.tabActive{
+    background: var(--trip-blue);
+    color: var(--trip-yellow) !important;
+}
+.tabDesc{
+    background: url('https://d-hye.github.io/source/img/tabmenu/city_1.jpg') no-repeat center/cover;
+    b{
+        font-size: var(--small-text);
+        text-align: center;
+        line-height: 1.45;
+        @media screen and (min-width: 768px){font-size: var(--semismall-text);}
+        @media screen and (min-width: 1280px){font-size: var(--medium-text);}
+    }
+    span{
+        height: 0;
+        overflow: hidden;
+        font-size: var(--desc-text);
+        line-height: 1.45;
+        letter-spacing: -0.02rem;
+        @media screen and (min-width: 768px){font-size: var(--small-text);}
+    }
+}
+.tabDesc:hover{
+    a{
+        height: 100%;
+        transition: .3s;
+    }
+    b{
+        margin-bottom: 1rem;
+        font-size: var(--desc-text);
+        @media screen and (min-width: 768px){font-size: var(--small-text);}
+        @media screen and (min-width: 1280px){font-size: var(--semismall-text);}
+    }
+    span{height: auto;}
+}
+.adSection{
+    li{
+        width: 100%; height: 56.25vw;
+        border-radius: 20px;
+        overflow: hidden;
+        @media screen and (min-width: 768px){width: 48.438%; height: auto;}
+    }
+}
+.review_gradient{
+    background: linear-gradient(var(--trip-white), var(--trip-skyblue));
+}
+.marquee1{
+    animation: review_marquee1 120s linear infinite;
+    @media screen and (min-width: 768px){
+        animation-duration: 60s;
+    }
+    &:hover{
+        animation-play-state: paused;
+    }
+}
+.marquee2{
+    animation: review_marquee2 60s linear infinite;
+    &:hover{
+        animation-play-state: paused;
+    }
+}
+@keyframes review_marquee1 {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: -273.75rem;
+        @media screen and (min-width: 768px){
+            left: -217.625rem;
+        }
+        @media screen and (min-width: 1024px){
+            left: -292.625rem;
+        }
+    }
+}
+@keyframes review_marquee2 {
+    0% {
+      right: 0;
+    }
+    100% {
+        right: -217.625rem;
+        @media screen and (min-width: 1024px){
+            right: -292.625rem;
+        }
+    }
+}
+
+.qrLink{
+    @media screen and (max-width: 769px){
+        min-width: 8.75rem;
+        border: 1px solid var(--trip-white);
+        border-radius: 4px;
+        &:hover{
+            transition: .3s;
+            background: rgba(0, 0, 0, .25);
+        }
+    }
+}

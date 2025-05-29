@@ -1,11 +1,14 @@
 import React, {useEffect} from 'react';
+import { useParams } from 'react-router-dom';
+
 import SubLayout from '../../layout/sub/SubLayout';
+
 import TripRoute from './tripRoute/TripRoute';
 import TripTalk from './tripTalk/TripTalk';
 import TripterEvent from './tripEvent/TripterEvent';
 import List from './bbs/List';
 import Service from './service/Service';
-import { useParams } from 'react-router-dom';
+import ProductList from './product/ProductList';
 
 
 
@@ -25,7 +28,8 @@ const SubContents: React.FC<{ id: string }>= ({id}) => {
       tripTalk: <TripTalk />,
       service: <Service />,
       bbs: <List />,
-      event: <TripterEvent />
+      event: <TripterEvent />,
+      products: <ProductList tab={tab} />
     };
     
     useEffect(() => {

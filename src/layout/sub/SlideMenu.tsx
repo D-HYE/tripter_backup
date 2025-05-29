@@ -179,7 +179,7 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
                 </Link>
               </li>
               <li>
-                <Link to="/tripterEvent" className="event">
+                <Link to="/tripterEvent/tripterSpecial" className="event">
                   이벤트
                 </Link>
               </li>
@@ -187,11 +187,11 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
             <ul className={`${hyo.hb_sublist}`}>
               <li>
                 <div>
-                  <Link to="/products/airplane/onSale">항공권</Link>
+                  <Link to="/products/airplane/onSaleA">항공권</Link>
                 </div>
                 <ul className={`${hyo.sublist} flex flex-wrap`}>
                   <li>
-                    <Link to="/products/airplane/onSale">
+                    <Link to="/products/airplane/onSaleA">
                       특가항공
                     </Link>
                   </li>
@@ -209,13 +209,13 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
               </li>
               <li>
                 <div>
-                  <Link to="/products/accommodation/onSale">
+                  <Link to="/products/accommodation/onSaleB">
                     숙소
                   </Link>
                 </div>
                 <ul className={`${hyo.sublist} flex flex-wrap`}>
                   <li>
-                    <Link to="/products/accommodation/onSale">
+                    <Link to="/products/accommodation/onSaleB">
                       특가숙소
                     </Link>
                   </li>

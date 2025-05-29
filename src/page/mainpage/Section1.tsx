@@ -14,7 +14,7 @@ export default function Sectino1() {
     async function fetchSlides() {
       const data = await getMainBanners()
       setSlides(data)
-      console.log(data)
+      //console.log(data)
     }
     fetchSlides()
   }, [])
