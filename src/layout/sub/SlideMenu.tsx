@@ -147,7 +147,7 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
               <span className="text-trip-blue font-theJamsil-medium text-small-text xs:text-semismall-text">계획짜기</span>
             </Link>
           </div>
-          <div className="flex flex-col overflow-y-auto gap-4 xs:gap-[2.5rem]">
+          <div className="flex flex-col overflow-y-auto gap-4 xs:gap-[2.5rem] flex-grow">
             <ul className={`${hyo.communitymenu}`}>
               <li>
                 <Link to="/bbs/findFriend" className="text-desc-text xs:text-small-text font-theJamsil-medium">
@@ -180,12 +180,12 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
                 </Link>
               </li>
             </ul>
-            <ul className={`${hyo.hb_sublist} flex flex-col gap-4 xs:gap-[2.5rem]`}>
-              <li>
+            <ul className={`${hyo.hb_sublist} flex flex-col gap-4 xs:gap-[2rem]`}>
+              <li className='flex flex-col gap-2 xs:gap-4'>
                 <div>
                   <Link to="/products/airplane/onSale" className='text-small-text font-theJamsil-medium xs:text-semismall-text'>항공권</Link>
                 </div>
-                <ul className={`${hyo.sublist} flex flex-wrap`}>
+                <ul className={`${hyo.sublist} flex flex-wrap gap-y-[0.5rem] xs:gap-y-4`}>
                   <li>
                     <Link to="/products/airplane/onSale" className='text-[12px] xs:text-small-text'>
                       특가항공
@@ -203,13 +203,13 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
                   </li>
                 </ul>
               </li>
-              <li>
+              <li className='flex flex-col gap-2 xs:gap-4'>
                 <div>
                   <Link to="/products/accommodation/onSale" className='text-small-text font-theJamsil-medium xs:text-semismall-text'>
                     숙소
                   </Link>
                 </div>
-                <ul className={`${hyo.sublist} flex flex-wrap`}>
+                <ul className={`${hyo.sublist} flex flex-wrap  gap-y-[0.5rem] xs:gap-y-4`}>
                   <li>
                     <Link to="/products/accommodation/onSale" className='text-[12px] xs:text-small-text'>
                       특가숙소
@@ -232,13 +232,13 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
                   </li>
                 </ul>
               </li>
-              <li>
+              <li className='flex flex-col gap-2 xs:gap-4'>
                 <div>
                   <Link to="/products/reservation/allPass" className='text-small-text font-theJamsil-medium xs:text-semismall-text'>
                     티켓&투어
                   </Link>
                 </div>
-                <ul id="ticket" className={`${hyo.sublist} flex flex-wrap`}>
+                <ul id="ticket" className={`${hyo.sublist} flex flex-wrap  gap-y-[0.5rem] xs:gap-y-4`}>
                   <li>
                     <Link
                       className="allPass text-trip-blue font-theJamsil-medium text-[12px] xs:text-small-text"

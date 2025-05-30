@@ -1,11 +1,11 @@
 import React from 'react';
 
-const PlanMaker:React.FC = () => {
-    return (
-        <div>
-            드디어 플랜메이커
-        </div>
-    );
+const PlanMaker: React.FC = () => {
+  return (
+   <div>
+    계획짜기
+   </div>
+  );
 };
 
 export default PlanMaker;
