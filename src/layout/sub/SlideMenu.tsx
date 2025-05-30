@@ -15,14 +15,13 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
   
 
   return (
-    <div className={`${hyo.hb_submenu} ${isMenuOpen ? hyo.open : ''} flex flex-col inset-0 bg-trip-white max-w-[25rem] fixed z-[999]`}>
-      <div className={`${hyo.dim}`} onClick={() => setIsMenuOpen(false)}></div>
+    <div className={`${hyo.hb_submenu} ${isMenuOpen ? hyo.open : ''} flex flex-col inset-0 bg-trip-white max-w-[15.625rem] xs:max-w-[25rem] fixed z-[999]`}>
       <div className={`flex flex-col flex-grow h-full relative bg-trip-white font-semismall-text`}>
-        <div className="flex justify-end d-open">
-          <button className="p-4 mx-4" onClick={() => setIsMenuOpen(false)}>
+        <div className="flex justify-end min-h-[40px] xs:h-auto">
+          <button className="p-0 mx-4 xs:p-4" onClick={() => setIsMenuOpen(false)}>
             <img 
               src="https://d-hye.github.io/source/img/icon/x-01.svg"
-              className="d-block"
+              className="block w-[13px] h-[13px] xs:w-6 xs:h-6"
               alt="닫기"
             />
           </button>
@@ -63,20 +62,22 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
 
         {/* 로그인 후 */}
         <div className={`border-t border-b border-gray-300`}>
-          <div className="bg-[#FFDA00] bg-opacity-25 px-9 py-4 flex items-end flex justify-between">
-            <div className="bg-trip-skyblue rounded-full w-12 h-12 flex justify-center items-center">
-              <img
-                src="https://d-hye.github.io/source/img/icon/user-profile-02.svg"
-                className="d-block"
-                alt=""
-              />
-            </div>
-            <div className="ml-6 mr-auto text-small-text">
-              <div className="mb-2 leading-none">
-                <span>안녕하세요!</span>
+          <div className="bg-[#FFDA00] bg-opacity-25 flex items-end flex justify-between px-4 py-[8px] xs:px-9 xs:py-4">
+            <div className='flex items-center gap-4 xs:gap-6'>
+              <div className="bg-trip-skyblue rounded-full w-12 h-12 flex justify-center items-center">
+                <img
+                  src="https://d-hye.github.io/source/img/icon/user-profile-02.svg"
+                  className="d-block"
+                  alt=""
+                />
               </div>
-              <div>
-                트립터<span className="text-semismall-text">###</span>님
+              <div className="flex flex-col gap-[8px]">
+                <div className="leading-none">
+                  <span className='text-[12px] xs:text-small-text'>안녕하세요!</span>
+                </div>
+                <div className='text-[12px] xs:text-small-text'>
+                  트립터<span className="text-desc-text xs:text-semismall-text">###</span>님
+                </div>
               </div>
             </div>
             <a className="settings" href="/">
@@ -87,86 +88,81 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
               />
             </a>
           </div>
-          <ul className={`${hyo.menu_icon} flex justify-between bg-trip-white py-3 px-9`}>
+          <ul className={`${hyo.menu_icon} flex justify-between bg-trip-white px-4 py-[8px] xs:px-9 xs:py-4`}>
             <li>
-              <Link to="/user" className="heart flex flex-col justify-center items-center font-[0.875rem]">
+              <Link to="/user" className="heart flex flex-col justify-center items-center">
                 <img
                   src="https://d-hye.github.io/source/img/icon/heart_02.svg"
                   className="d-block m-2.5"
                   alt="내찜"
                 />
-                <span>내 찜</span>
+                <span className='text-[12px] xs:text-desc-text'>내 찜</span>
               </Link>
             </li>
             <li>
-              <Link to="/user" className="flex flex-col justify-center items-center font-[0.875rem]">
+              <Link to="/user" className="flex flex-col justify-center items-center">
                 <img
                   src="https://d-hye.github.io/source/img/icon/travel.svg"
                   className="d-block m-2.5"
                   alt="내여행"
                 />
-                <span>내 여행</span>
+                <span className='text-[12px] xs:text-desc-text'>내 여행</span>
               </Link>
             </li>
             <li>
-              <Link to="/user" className="flex flex-col justify-center items-center font-[0.875rem]">
+              <Link to="/user" className="flex flex-col justify-center items-center">
                 <img
                   src="https://d-hye.github.io/source/img/icon/layer.svg"
                   className="d-block m-2.5"
                   alt="가계부"
                 />
-                <span>내 가계부</span>
+                <span className='text-[12px] xs:text-desc-text'>내 가계부</span>
               </Link>
             </li>
             <li>
-              <Link to="/user" className="flex flex-col justify-center items-center font-[0.875rem]">
+              <Link to="/user" className="flex flex-col justify-center items-center">
                 <img
                   src="https://d-hye.github.io/source/img/icon/pencil-02.svg"
                   className="d-block m-2.5"
                   alt="내후기"
                 />
-                <span>내 후기</span>
+                <span className='text-[12px] xs:text-desc-text'>내 후기</span>
               </Link>
             </li>
           </ul>
         </div>
 
         {/* 메뉴리스트 */}
-        <div className={`flex flex-col flex-grow my-[2.25rem] mx-[2.5rem] overflow-y-auto`}>
-          <ul className="flex flex-col">
-            <li className="mb-[0.9375rem]">
-              <Link
-                to="/tripRoute/myFeelter"
-                className="flex items-center"
-              >
-                <span className="text-trip-blue font-theJamsil-medium text-semismall-text">MY FEEL:TER</span>
-              </Link>
-            </li>
-            <li className="mb-[0.9375rem]">
-              <Link
-                to="/tripRoute/planMaker"
-                className="flex items-center"
-              >
-                <span className="text-trip-blue font-theJamsil-medium text-semismall-text">계획짜기</span>
-              </Link>
-            </li>
-          </ul>
-          <div className="flex flex-col overflow-y-auto">
+        <div className={`flex flex-col flex-grow m-4 gap-4 xs:my-[2.25rem] xs:mx-[2.5rem] overflow-y-auto xs:gap-[2.5rem]`}>
+          <div>
+            <Link to="/tripRoute/myFeelter" className="flex items-center">
+              <span className="text-trip-blue font-theJamsil-medium text-small-text xs:text-semismall-text">MY FEEL:TER</span>
+            </Link>
+          </div>
+          <div>
+            <Link
+              to="/tripRoute/planMaker"
+              className="flex items-center"
+            >
+              <span className="text-trip-blue font-theJamsil-medium text-small-text xs:text-semismall-text">계획짜기</span>
+            </Link>
+          </div>
+          <div className="flex flex-col overflow-y-auto gap-4 xs:gap-[2.5rem]">
             <ul className={`${hyo.communitymenu}`}>
               <li>
-                <Link to="/bbs/findFriend" className="friendfind">
+                <Link to="/bbs/findFriend" className="text-desc-text xs:text-small-text font-theJamsil-medium">
                   동행 구해요
                 </Link>
               </li>
               <li>
-                <Link to="/bbs/findPlan" className="planaround">
+                <Link to="/bbs/findPlan" className="text-desc-text xs:text-small-text font-theJamsil-medium">
                   계획 둘러보기
                 </Link>
               </li>
               <li>
                 <Link
                   to="/tripTalk/findReview"
-                  className="reviewaround"
+                  className="text-desc-text xs:text-small-text font-theJamsil-medium"
                 >
                   후기 둘러보기
                 </Link>
@@ -174,34 +170,34 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
             </ul>
             <ul className={`${hyo.communitymenu} flex flex-wrap`}>
               <li>
-                <Link to="/" className="mbrecomm">
+                <Link to="/" className="text-desc-text xs:text-small-text font-theJamsil-medium">
                   MD추천
                 </Link>
               </li>
               <li>
-                <Link to="/tripterEvent" className="event">
+                <Link to="/tripterEvent" className="text-desc-text xs:text-small-text font-theJamsil-medium">
                   이벤트
                 </Link>
               </li>
             </ul>
-            <ul className={`${hyo.hb_sublist}`}>
+            <ul className={`${hyo.hb_sublist} flex flex-col gap-4 xs:gap-[2.5rem]`}>
               <li>
                 <div>
-                  <Link to="/products/airplane/onSale">항공권</Link>
+                  <Link to="/products/airplane/onSale" className='text-small-text font-theJamsil-medium xs:text-semismall-text'>항공권</Link>
                 </div>
                 <ul className={`${hyo.sublist} flex flex-wrap`}>
                   <li>
-                    <Link to="/products/airplane/onSale">
+                    <Link to="/products/airplane/onSale" className='text-[12px] xs:text-small-text'>
                       특가항공
                     </Link>
                   </li>
                   <li>
-                    <Link to="/products/airplane/domestic">
+                    <Link to="/products/airplane/domestic" className='text-[12px] xs:text-small-text'>
                       국내항공
                     </Link>
                   </li>
                   <li>
-                    <Link to="/products/airplane/overseas">
+                    <Link to="/products/airplane/overseas" className='text-[12px] xs:text-small-text'>
                       국외항공
                     </Link>
                   </li>
@@ -209,28 +205,28 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
               </li>
               <li>
                 <div>
-                  <Link to="/products/accommodation/onSale">
+                  <Link to="/products/accommodation/onSale" className='text-small-text font-theJamsil-medium xs:text-semismall-text'>
                     숙소
                   </Link>
                 </div>
                 <ul className={`${hyo.sublist} flex flex-wrap`}>
                   <li>
-                    <Link to="/products/accommodation/onSale">
+                    <Link to="/products/accommodation/onSale" className='text-[12px] xs:text-small-text'>
                       특가숙소
                     </Link>
                   </li>
                   <li>
-                    <Link to="/products/accommodation/hotel">
+                    <Link to="/products/accommodation/hotel" className='text-[12px] xs:text-small-text'>
                       호텔
                     </Link>
                   </li>
                   <li>
-                    <Link to="/products/accommodation/guestHouse">
+                    <Link to="/products/accommodation/guestHouse" className='text-[12px] xs:text-small-text'>
                       게스트하우스
                     </Link>
                   </li>
                   <li>
-                    <Link to="/products/accommodation/countryside">
+                    <Link to="/products/accommodation/countryside" className='text-[12px] xs:text-small-text'>
                       펜션&캠핑
                     </Link>
                   </li>
@@ -238,36 +234,36 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
               </li>
               <li>
                 <div>
-                  <Link to="/products/reservation/allPass">
+                  <Link to="/products/reservation/allPass" className='text-small-text font-theJamsil-medium xs:text-semismall-text'>
                     티켓&투어
                   </Link>
                 </div>
                 <ul id="ticket" className={`${hyo.sublist} flex flex-wrap`}>
                   <li>
                     <Link
-                      className="allPass text-blue"
+                      className="allPass text-trip-blue font-theJamsil-medium text-[12px] xs:text-small-text"
                       to="/products/reservation/allPass"
                     >
                       올패스권
                     </Link>
                   </li>
                   <li>
-                    <Link to="/products/reservation/localTour">
+                    <Link to="/products/reservation/localTour" className='text-[12px] xs:text-small-text'>
                       현지투어
                     </Link>
                   </li>
                   <li>
-                    <Link to="/products/reservation/themePark">
+                    <Link to="/products/reservation/themePark" className='text-[12px] xs:text-small-text'>
                       테마파크
                     </Link>
                   </li>
                   <li>
-                    <Link to="/products/reservation/ticket">
+                    <Link to="/products/reservation/ticket" className='text-[12px] xs:text-small-text'>
                       전시체험
                     </Link>
                   </li>
                   <li>
-                    <Link to="/products/reservation/train">
+                    <Link to="/products/reservation/train" className='text-[12px] xs:text-small-text'>
                       철도여행
                     </Link>
                   </li>

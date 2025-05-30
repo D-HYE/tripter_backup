@@ -97,6 +97,9 @@ const Header: React.FC<{ id: string }> = ({ id }) => {
                 />
               </div>
             </div>
+           {isMenuOpen && ( 
+            <div  className={`${hyo.dim} fixed top-0 left-0 w-[100vw] h-screen bg-[rgba(0,0,0,0.3)] z-[998]`}
+            onClick={() => setIsMenuOpen(false)}></div>)}  
 
             <ul className={`${hyo.menu} gap-6 order-1 hidden md:flex`}>
               <li>
