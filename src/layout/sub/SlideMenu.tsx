@@ -175,7 +175,7 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
                 </Link>
               </li>
               <li>
-                <Link to="/tripterEvent" className="text-desc-text xs:text-small-text font-theJamsil-medium">
+                <Link to="/tripterEvent/tripterSpecial" className="text-desc-text xs:text-small-text font-theJamsil-medium">
                   이벤트
                 </Link>
               </li>
@@ -183,11 +183,11 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
             <ul className={`${hyo.hb_sublist} flex flex-col gap-4 xs:gap-[2rem]`}>
               <li className='flex flex-col gap-2 xs:gap-4'>
                 <div>
-                  <Link to="/products/airplane/onSale" className='text-small-text font-theJamsil-medium xs:text-semismall-text'>항공권</Link>
+                  <Link to="/products/airplane/onSaleA" className='text-small-text font-theJamsil-medium xs:text-semismall-text'>항공권</Link>
                 </div>
                 <ul className={`${hyo.sublist} flex flex-wrap gap-y-[0.5rem] xs:gap-y-4`}>
                   <li>
-                    <Link to="/products/airplane/onSale" className='text-[12px] xs:text-small-text'>
+                    <Link to="/products/airplane/onSaleA" className='text-[12px] xs:text-small-text'>
                       특가항공
                     </Link>
                   </li>
@@ -205,13 +205,13 @@ const SlideMenu: React.FC<SlideMenuProps> = ({ setIsMenuOpen, isMenuOpen }) => {
               </li>
               <li className='flex flex-col gap-2 xs:gap-4'>
                 <div>
-                  <Link to="/products/accommodation/onSale" className='text-small-text font-theJamsil-medium xs:text-semismall-text'>
+                  <Link to="/products/accommodation/onSaleB" className='text-small-text font-theJamsil-medium xs:text-semismall-text'>
                     숙소
                   </Link>
                 </div>
                 <ul className={`${hyo.sublist} flex flex-wrap  gap-y-[0.5rem] xs:gap-y-4`}>
                   <li>
-                    <Link to="/products/accommodation/onSale" className='text-[12px] xs:text-small-text'>
+                    <Link to="/products/accommodation/onSaleB" className='text-[12px] xs:text-small-text'>
                       특가숙소
                     </Link>
                   </li>

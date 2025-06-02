@@ -37,8 +37,8 @@ function SubLayout( { children, id, tab }: LayoutProps ) {
                         <p className="font-[TheJamsil500] text-medium-text">{tabs.find((item) => item.tab_key === tab)?.description || '트립터에서 더 다양한 혜택을 즐겨보세요'}</p>
                     </div>
                 </div>
-                <div className="subContWrap flex justify-center flex-col lg:flex-row gap-[1.625rem] max-w-[64rem] mx-auto py-0 lg:py-[2.5rem]">
-                    <div className="sectionList bg-trip-white lg:rounded-md	 py-[1.25rem] px-[0.625rem] lg:py-20 lg:px-5 drop-shadow-[var(--dropShadow)]">
+                <div className="subContWrap flex justify-center flex-col lg:flex-row gap-0 md:gap-[1.625rem] max-w-[64rem] mx-auto py-0 lg:py-[2.5rem]">
+                    <div className="sectionList bg-trip-white lg:rounded-md	 py-[1.25rem] px-[0.625rem] lg:py-20 lg:px-5 md:drop-shadow-[var(--dropShadow)]">
                         <ul className="flex justify-center lg:justify-start flex-row lg:flex-col gap-[1.625rem]">
                             {tabs
                                 .filter((item) => item.tab_group === id)
@@ -58,7 +58,7 @@ function SubLayout( { children, id, tab }: LayoutProps ) {
                             }
                         </ul>
                     </div>
-                    <div className="sectionCont px-2 bg-trip-white drop-shadow-[var(--dropShadow)] rounded-md">
+                    <div className="sectionCont px-2 bg-trip-white md:drop-shadow-[var(--dropShadow)] lg:rounded-md border-">
                         {children}
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import supabase from '../config/supabaseApi';
-import type { Post} from '../types/post';
+import type { Post, postUser } from '../types/post';
 
 
 export const fetchPostData = async (tableName: string): Promise<Post[] | undefined> => {
@@ -15,8 +15,11 @@ export const fetchPostData = async (tableName: string): Promise<Post[] | undefin
       `);
 
     if (error) throw error;
+    if (!data) return;
 
-    const posts: Post[] = data.map((item: any) => ({
+    const rawData = data as (Post & { user_info?: postUser })[];
+
+    const posts: Post[] = rawData.map( item => ({
       post_id: item.post_id,
       post_tit: item.post_tit,
       trip_spot: item.trip_spot,

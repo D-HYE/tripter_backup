@@ -1,13 +1,12 @@
 import React from 'react';
-
-import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 
+import { useForm } from 'react-hook-form';
+import { loginRegister } from '../../../api/auth';
+import { LoginForm } from '../../../types/user';
 
-interface LoginForm {
-    userID: string;
-    userPW: string;
-}
+import hye from '../../../scss/hye.module.scss';
+
 
 const Login: React.FC = () => {
     const {
@@ -15,68 +14,69 @@ const Login: React.FC = () => {
         handleSubmit,
     } = useForm<LoginForm>();
 
-    const onValid = (data: LoginForm) => {
-        console.log(data);
+    const onValid = async(data: LoginForm) => {
+        const result = await loginRegister(data.user_id, data.user_pw);
+
+        if (!result.success) {
+          alert(result.error || "로그인에 실패했습니다.");
+          return;
+
+        } else{
+            alert("로그인 성공!");
+        }
     };
 
     return (
-        <section className="userLogin ">
-            <div className="form_area container_m ">
-                <h3>안녕하세요 여행자님, <span>트립터와 함께 떠나볼까요?</span></h3>
+        <section className="user_login">
+            <div className="py-10 md:py-20">
+                <div className='text-center font-700 mb-9 md:mb-20'>
+                    <p className='text-semismall-text md:text-medium-text leading-[1.45]'>안녕하세요 여행자님,<br/>트립터와 함께 떠나볼까요?</p>
+                </div>
                 <form onSubmit={handleSubmit(onValid)} noValidate>
-                    <fieldset className="fieldset1">
+                    <fieldset className="fieldset1 mb-9 md:mb-[3.75rem]">
                         <input
                             type="text"
                             placeholder="아이디"
-                            {...register("userID", { required: "아이디를 입력하세요." })}
+                            {...register("user_id", { required: "아이디를 입력하세요." })}
+                            className={`${hye.input_text} w-full md:text-semismall-text`}
                         />
                     </fieldset>
-
                     <fieldset className="fieldset2">
                         <input
                             type="password"
                             placeholder="비밀번호"
-                            {...register("userPW", { required: "비밀번호를 입력하세요." })}
+                            {...register("user_pw", { required: "비밀번호를 입력하세요." })}
+                            className={`${hye.input_text} w-full md:text-semismall-text`}
                         />
                     </fieldset>
-                    <div className="findInfo">
-                        <a href="#none">아이디 / 비밀번호 찾기</a>
+                    <div className="findInfo flex justify-end pt-5">
+                        <Link to="#none" className='text-trip-gray3 text-desc-text md:text-small-text'>아이디 / 비밀번호 찾기</Link>
                     </div>
-                    <div className="btn_wrap">
-                        <button type="submit" className="submit_btn" id="submit_btn">로그인</button>
-                        <Link to="/user/signUp">회원가입</Link>
+                    <div className="flex flex-col gap-5 my-9 md:my-20">
+                        <button type="submit" className="py-4 rounded-md bg-trip-blue text-trip-white text-semismall md:text-medium-text font-700" id="submit_btn">로그인</button>
+                        <Link to="/user/signUp" className={`py-4 ${hye.border1px} rounded-md text-center text-trip-blue text-semismall md:text-medium-text`}>회원가입</Link>
                     </div>
                 </form>
-            </div>
-            <div className="sns_login container_m">
-                <h4>SNS 간편 로그인</h4>
-                <ul className="d-flex">
-                    <li id="naver">
-                        <a href="https://nid.naver.com/nidlogin.login?mode=form&url=https://www.naver.com/">
-                            <img src="https://d-hye.github.io/source/img/logo/btn_naver.svg" alt="" />
-                        </a>
-                    </li>
-                    <li id="kakao">
-                        <a href="https://accounts.kakao.com/login/?continue=https%3A%2F%2Fsharer.kakao.com%2Fpicker%2Flink%3Fapp_key%3D4e0f02e43248fed6c5850431ea527a61%26short_key%3D21037dbe-09a9-4ce9-ab52-668e3ce85ff9#login">
-                            <img src="https://d-hye.github.io/source/img/logo/btn_kakao.svg" alt="" />
-                        </a>
-                    </li>
-                    <li id="facebook">
-                        <a href="https://www.facebook.com/?locale=ko_KR">
-                            <img src="https://d-hye.github.io/source/img/logo/btn_facebook.svg" alt="" />
-                        </a>
-                    </li>
-                    <li id="google">
-                        <a href="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwww.google.com%2Fsearch%3Fq%3D%25EA%25B5%25AC%25EA%25B8%2580%26oq%3D%25EA%25B5%25AC%25EA%25B8%2580%26gs_lcrp%3DEgZjaHJvbWUyBggAEEUYOdIBBzQyNGowajGoAgCwAgA%26sourceid%3Dchrome%26ie%3DUTF-8%26sei%3DF8nHZ6b2FeGPvr0P_eqByAo&ec=GAZAAQ&hl=ko&ifkv=ASSHykpb5b2-iZDmyWCclyinka_eSS3zaRNJoUFq_7PSfC5yQT0uBiOSFLzk5xAXPcoZIO_UnYan&passive=true&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-1677412365%3A1741146394235713&ddm=1">
-                            <img src="https://d-hye.github.io/source/img/logo/btn_google.svg" alt="" />
-                        </a>
-                    </li>
-                    <li id="apple">
-                        <a href="#none">
-                            <img src="https://d-hye.github.io/source/img/logo/btn_apple.svg" alt="" />
-                        </a>
-                    </li>
-                </ul>
+                <div className="sns_login">
+                    <h4 className='pb-9 text-center md:text-medium-text'>SNS 간편 로그인</h4>
+                    <ul className="flex justify-center gap-4">
+                        <li>
+                            <Link className={`${hye.snslogin_item} bg-[#03c75a]`} to="https://nid.naver.com/nidlogin.login?mode=form&url=https://www.naver.com/">
+                                <img src="https://d-hye.github.io/source/img/icon/naver.svg" alt="네이버 로그인" />
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className={`${hye.snslogin_item} bg-[#fae100]`} to="https://accounts.kakao.com/login/?continue=https%3A%2F%2Fsharer.kakao.com%2Fpicker%2Flink%3Fapp_key%3D4e0f02e43248fed6c5850431ea527a61%26short_key%3D21037dbe-09a9-4ce9-ab52-668e3ce85ff9#login">
+                                <img src="https://d-hye.github.io/source/img/icon/kakao.svg" alt="카카오 로그인" />
+                            </Link>
+                        </li>
+                        <li>
+                            <Link className={`${hye.snslogin_item} ${hye.border1px}`} to="https://accounts.google.com/v3/signin/identifier?continue=https%3A%2F%2Fwww.google.com%2Fsearch%3Fq%3D%25EA%25B5%25AC%25EA%25B8%2580%26oq%3D%25EA%25B5%25AC%25EA%25B8%2580%26gs_lcrp%3DEgZjaHJvbWUyBggAEEUYOdIBBzQyNGowajGoAgCwAgA%26sourceid%3Dchrome%26ie%3DUTF-8%26sei%3DF8nHZ6b2FeGPvr0P_eqByAo&ec=GAZAAQ&hl=ko&ifkv=ASSHykpb5b2-iZDmyWCclyinka_eSS3zaRNJoUFq_7PSfC5yQT0uBiOSFLzk5xAXPcoZIO_UnYan&passive=true&flowName=GlifWebSignIn&flowEntry=ServiceLogin&dsh=S-1677412365%3A1741146394235713&ddm=1">
+                                <img src="https://d-hye.github.io/source/img/icon/google.svg" alt="구글 로그인" />
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
     );

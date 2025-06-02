@@ -21,7 +21,7 @@ const Section3:React.FC<tabProps> = ({tabData}) => {
                     {tabData.map((item, idx) => (
                         <li 
                             key={item.tabid} 
-                            className={`shrink-0 text-trip-blue py-2 px-4 text-small md:text-semismall-text border border-trip-blue rounded-full cursor-pointer ${activeIndex === idx ? `${hye.tabActive}` : ""}`}
+                            className={`shrink-0 text-trip-blue py-2 px-4 text-small md:text-semismall-text rounded-full cursor-pointer ${hye.border1px} ${activeIndex === idx ? `${hye.tabActive}` : ""}`}
                             onClick={() => setActiveIndex(idx)}
                         >
                             &#35;{item.tabnm}
