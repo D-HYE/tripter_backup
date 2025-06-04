@@ -1,0 +1,50 @@
+.input_text{
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid var(--trip-black);
+    &::placeholder{color: var(--trip-gray3);}
+    &:focus{outline: none; color: var(--trip-blue); border-color: var(--trip-blue);}
+}
+
+.checkbox{
+    >input[type="checkbox"]{
+        display: none;
+    }
+    input[type="checkbox"] + span{
+        cursor: pointer;
+        position: relative;
+        display: block;
+        padding-left: 36px;
+        line-height: 25px;
+        &::before{
+            content: "";
+            box-sizing: border-box;
+            position: absolute; top: 0; left: 0;
+            display: block;
+            width: 25px; height: 25px;
+            background: #fff;
+            border: 2px solid var(--trip-gray3); border-radius: 5px;
+        }
+    }
+    input[type="checkbox"]:checked + span{
+        &::before{
+            width: 28px;
+            background: url("https://d-hye.github.io/source/img/icon/checkbox_checked.svg") no-repeat left top/contain;
+            border: none;
+        }
+    }
+}
+
+.btn_squre{
+    display: block;
+    padding: 0.75rem;
+    border-radius: 5px;
+    text-align: center;
+    @media screen and (min-width: 769px){
+        padding: 1rem;
+    }
+
+}
+.btn_blue{
+    background: var(--trip-blue);
+    color: var(--trip-white);
+}

@@ -33,7 +33,7 @@ function SubLayout( { children, id, tab }: LayoutProps ) {
                     `,
                 }} >
                     <div className="h-[15.375rem] flex justify-center items-center flex-col gap-8 text-center text-trip-blue">
-                        <h3 className="font-[TheJamsil500] text-huge-text">{tabs.find((item) => item.tab_key === tab)?.tab_name || '트립터'}</h3>
+                        <h2 className="font-[TheJamsil500] text-huge-text">{tabs.find((item) => item.tab_key === tab)?.tab_name || '트립터'}</h2>
                         <p className="font-[TheJamsil500] text-medium-text">{tabs.find((item) => item.tab_key === tab)?.description || '트립터에서 더 다양한 혜택을 즐겨보세요'}</p>
                     </div>
                 </div>

@@ -11,12 +11,6 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.input_text{
-    padding: 1rem 0.5rem;
-    border-bottom: 1px solid var(--trip-black);
-    &::placeholder{color: var(--trip-gray3);}
-    &:focus{outline: none; color: var(--trip-blue); border-color: var(--trip-blue);}
-}
 .border1px{border: 1px solid var(--trip-blue);}
 
 //--- main

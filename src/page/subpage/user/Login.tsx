@@ -6,6 +6,7 @@ import { loginRegister } from '../../../api/auth';
 import { LoginForm } from '../../../types/user';
 
 import hye from '../../../scss/hye.module.scss';
+import el from '../../../scss/element.module.scss';
 
 
 const Login: React.FC = () => {
@@ -38,7 +39,7 @@ const Login: React.FC = () => {
                             type="text"
                             placeholder="아이디"
                             {...register("user_id", { required: "아이디를 입력하세요." })}
-                            className={`${hye.input_text} w-full md:text-semismall-text`}
+                            className={`${el.input_text} w-full md:text-semismall-text`}
                         />
                     </fieldset>
                     <fieldset className="fieldset2">
@@ -46,19 +47,19 @@ const Login: React.FC = () => {
                             type="password"
                             placeholder="비밀번호"
                             {...register("user_pw", { required: "비밀번호를 입력하세요." })}
-                            className={`${hye.input_text} w-full md:text-semismall-text`}
+                            className={`${el.input_text} w-full md:text-semismall-text`}
                         />
                     </fieldset>
                     <div className="findInfo flex justify-end pt-5">
                         <Link to="#none" className='text-trip-gray3 text-desc-text md:text-small-text'>아이디 / 비밀번호 찾기</Link>
                     </div>
                     <div className="flex flex-col gap-5 my-9 md:my-20">
-                        <button type="submit" className="py-4 rounded-md bg-trip-blue text-trip-white text-semismall md:text-medium-text font-700" id="submit_btn">로그인</button>
-                        <Link to="/user/signUp" className={`py-4 ${hye.border1px} rounded-md text-center text-trip-blue text-semismall md:text-medium-text`}>회원가입</Link>
+                        <button type="submit" className={`${el.btn_squre} bg-trip-blue text-trip-white text-semismall md:text-medium-text font-700 `}id="submit_btn">로그인</button>
+                        <Link to="/user/signUp" className={`${el.btn_squre} ${hye.border1px} text-trip-blue text-semismall md:text-medium-text`}>회원가입</Link>
                     </div>
                 </form>
                 <div className="sns_login">
-                    <h4 className='pb-9 text-center md:text-medium-text'>SNS 간편 로그인</h4>
+                    <div className='pb-9 text-center md:text-medium-text'>SNS 간편 로그인</div>
                     <ul className="flex justify-center gap-4">
                         <li>
                             <Link className={`${hye.snslogin_item} bg-[#03c75a]`} to="https://nid.naver.com/nidlogin.login?mode=form&url=https://www.naver.com/">
